@@ -1,6 +1,14 @@
+
+
+// function to generate a random numeric value
+var randomNumber = function (min, max) {
+    var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+    return value;
+};
+
 // fight function
 var fight = function(enemy) {
-    
     while(playerInfo.health > 0 && enemy.health > 0) {
         // ask player if they'd like to fight or run
         var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle?  Enter 'FIGHT' or 'SKIP' to choose.");
@@ -45,6 +53,7 @@ var fight = function(enemy) {
         var damage = randomNumber(enemy.attack - 3, enemy.attack);
 
         playerInfo.health = Math.max(0, playerInfo.health - damage);
+        
         console.log(
             enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining."
         );
@@ -107,9 +116,8 @@ var endGame = function() {
 
     //If player is still alive, player wins!
     if (playerInfo.health > 0) {
-        
-    }
-    else {
+        window.alert("Great Job! You have survived the game! You now have a score of " + playerInfo.money + ".");
+    }else {
         window.alert("You've lost your robot in battle.");
     }
 
@@ -154,17 +162,10 @@ var shop = function() {
             // call shop again to force player to pick a valid option
             shop();
             break;
-
-
     }
 };
 
-// function to generate a random numeric value
-var randomNumber = function (min, max) {
-    var value = Math.floor(Math.random() * (max - min + 1) + min);
 
-    return value;
-};
 
 var playerInfo = {
     name: window.prompt("What is your robot's name?"),
@@ -178,7 +179,7 @@ var playerInfo = {
     },
     refillHealth: function() {
         if (this.money >= 7) {
-            window.alert("refilling player's health by 20 for 7 dollars.");
+            window.alert("Refilling player's health by 20 for 7 dollars.");
             this.health +=20;
             this.money -= 7;
         }
